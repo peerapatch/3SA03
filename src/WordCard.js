@@ -1,10 +1,18 @@
-import React from 'react';
-import CharacterCard from './CharacterCard';
-export default function WordCard(props){
- return (
- <div>
-{ Array.from(props.value).map((c, i) => <CharacterCard value={c} key={i}/>) }
- </div>
- );
+import React,{useState} from 'react';
+
+export default function CharacterCard(props) { 
+    const [active, setActive] = useState(false); 
+    const activate = () => {        
+        if(!active){            
+             setActive(true)             
+             props.activationHandler(props.value)  
+    }
 }
+    const className = `card${active ? ' activeCard': ''}`   
+    return (
+        <div className={className} onClick={activate}>
+            {props.value}
+        </div>     )   
+         
+        }
 
